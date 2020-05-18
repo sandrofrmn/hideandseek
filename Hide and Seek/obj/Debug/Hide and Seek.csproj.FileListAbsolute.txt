@@ -1,0 +1,8 @@
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Hide and Seek.exe.config
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Hide and Seek.exe
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Hide and Seek.pdb
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.csprojAssemblyReference.cache
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Properties.Resources.resources
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.csproj.GenerateResource.cache
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.exe
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.pdb
