@@ -6,3 +6,22 @@ C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_See
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.csproj.GenerateResource.cache
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.exe
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.pdb
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Hide and Seek.exe.config
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Hide and Seek.exe
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Hide and Seek.pdb
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.csprojAssemblyReference.cache
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Form1.resources
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Properties.Resources.resources
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.csproj.GenerateResource.cache
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.exe
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.pdb
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Game.resources
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Newtonsoft.Json.dll
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Newtonsoft.Json.xml
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.csproj.CopyComplete
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.Base.dll
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebBrowser.dll
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebEngine.dll
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.Base.xml
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebBrowser.xml
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebEngine.xml
