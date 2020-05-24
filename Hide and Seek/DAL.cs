@@ -55,5 +55,14 @@ namespace Hide_and_Seek
             domoticz_handler(("http://127.0.0.1:8080/json.htm?type=command&param=switchlight&idx=" + switchID + "&switchcmd=On"));
         }
 
+        public void TurnOff(int switchID)
+        {
+            domoticz_handler("http://127.0.0.1:8080/json.htm?type=command&param=switchlight&idx=" + switchID + "&switchcmd=Off");
+        }
+
+        public void TurnGroupOff(int sceneGroupID)
+        {
+            domoticz_handler("http://127.0.0.1:8080/json.htm?type=command&param=switchscene&idx=" + sceneGroupID + "&switchcmd=Off");
+        }
     }
 }

@@ -16,24 +16,33 @@ namespace Hide_and_Seek
     {
         private int _seconds;
         private int _minutes;
+        public bool start = true;
         List<string> Rooms = new List<string>() { "Hallway", "Bedroom", "Toilet", "Bathroom", "Livingroom", "Kitchen" };
         List<int> MotionSensors = new List<int>() { 3, 9, 10, 11, 12, 13 };
         Random random = new Random();
+        DAL dal = new DAL();
 
         public Game()
         {
             InitializeComponent();
             timer1.Start();
-            timerRoom.Start();
-            timerHall.Start();
         }
         
         private void Game_Load(object sender, EventArgs e)
         {
-            DAL dal = new DAL();
-            roomName.Text = "Hallway";
-            dal.TurnOn(3);
-            timerRoom.Interval = random.Next(7000, 60000);
+            
+            if (start)
+            {
+                roomName.Text = "Hallway";
+                dal.TurnOn(3);
+                start = false;
+            }
+            timerRoom.Start();
+            timerHall.Start();
+            timerRoom.Interval = random.Next(4000, 8000);
+            dal.TurnOff(3);
+            dal.TurnOff(9);
+            dal.TurnOff(11);
             timerRoom.Tick += new System.EventHandler(OnTimerEvent);
             
             /*
@@ -43,16 +52,50 @@ namespace Hide_and_Seek
 
         public void OnTimerEvent(object source, EventArgs e)
         {
-            int current_room = random.Next(1, Rooms.Count());
+            dal.TurnGroupOff(2);
+            int current_room = random.Next(0, Rooms.Count());
             roomName.Text = Rooms.ElementAt(current_room);
             int sensor = MotionSensors.ElementAt(current_room);
-            timerHall.Interval = random.Next(4000, 8000);
+            
+            dal.TurnOn(sensor);
+            timerRoom.Stop();
+
+            timerHall.Start();
+            timerHall.Interval = random.Next(7000, 45000);
             timerHall.Tick += new System.EventHandler(TimerHallEvent);
+            
+            
         }
 
         public void TimerHallEvent(object source, EventArgs e)
         {
-            roomName.Text = "Hallway";
+            dal.TurnGroupOff(2);
+            int number = random.Next(0,1);
+            if ((number == 0 && roomName.Text == "Bedroom") || (number == 0 && roomName.Text == "Bathroom")) {
+                if (roomName.Text == "Bedroom")
+                {
+                    roomName.Text = "Bathroom";
+                    dal.TurnOn(11);
+                    dal.TurnOff(9);
+                    start = true;
+                }
+                else
+                {
+                    roomName.Text = "Bedroom";
+                    dal.TurnOn(9);
+                    dal.TurnOff(11);
+                    start = true;
+                }
+            }
+            else
+            {  
+                roomName.Text = "Hallway";
+                dal.TurnOn(3);
+            }
+
+            
+            timerHall.Stop();
+            timerRoom.Start();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
