@@ -34,6 +34,7 @@ namespace Hide_and_Seek
             if (start)
             {
                 roomName.Text = "Hallway";
+                dal.TurnGroupOff(2);
                 dal.TurnOn(3);
                 start = false;
             }
@@ -128,14 +129,13 @@ namespace Hide_and_Seek
                 timerHall.Stop();
                 timerRoom.Stop();
                 time_elapsed.Text = "5:00";
+                dal.TurnOn(14);
             }
 
         }
 
         private void lamp_test_Click(object sender, EventArgs e)
         {
-            DAL dal = new DAL();
-            dal.ToggleSwitch(3);
         }
 
         private void time_elapsed_Click(object sender, EventArgs e)
