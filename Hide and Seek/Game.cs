@@ -22,10 +22,12 @@ namespace Hide_and_Seek
         Random random = new Random();
         DAL dal = new DAL();
 
-        public Game()
+        public Game(int selectedValue)
         {
             InitializeComponent();
             timer1.Start();
+            Form1 forma = new Form1();
+            forma.comboBox1_SelectedIndexChanged      
         }
         
         private void Game_Load(object sender, EventArgs e)
@@ -121,9 +123,9 @@ namespace Hide_and_Seek
                 _minutes++;
                 _seconds = 0;
             }
+            
 
-
-            if (_minutes >= 5 )
+            if (_minutes >=  )
             {
                 timer1.Stop();
                 timerHall.Stop();
@@ -134,13 +136,16 @@ namespace Hide_and_Seek
 
         }
 
+
+        
         private void lamp_test_Click(object sender, EventArgs e)
-        {
+        { 
         }
 
         private void time_elapsed_Click(object sender, EventArgs e)
         {
 
-        }
+        }  
+
     }
 }

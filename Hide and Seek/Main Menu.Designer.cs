@@ -72,23 +72,23 @@
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "1 Minute",
-            "3 Minutes",
-            "5 Minutes"});
-            this.comboBox1.Location = new System.Drawing.Point(435, 261);
+            "1",
+            "3",
+            "5"});
+            this.comboBox1.Location = new System.Drawing.Point(498, 265);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(155, 24);
+            this.comboBox1.Size = new System.Drawing.Size(81, 24);
             this.comboBox1.TabIndex = 3;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(343, 261);
+            this.label2.Location = new System.Drawing.Point(343, 268);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 17);
+            this.label2.Size = new System.Drawing.Size(149, 17);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Time to hide";
+            this.label2.Text = "Time to hide (Minutes)";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // Form1

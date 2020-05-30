@@ -24,7 +24,7 @@ namespace Hide_and_Seek
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Game game = new Game();
+            Game game = new Game(int comboBox1.SelectedValue);
             Hide();
             game.ShowDialog();
             Close();
@@ -35,15 +35,11 @@ namespace Hide_and_Seek
 
         }
 
-        public void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        public string comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int HidersMinuten = 5;  
-            if (comboBox1.SelectedItem.ToString() == "1 Minute")
-            {
-               HidersMinuten = 1;
-            }
+            var minutes = comboBox1.Text;
+            return minutes;
 
         }
-
     }
 }
