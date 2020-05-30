@@ -25,3 +25,14 @@ C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebEngine
 C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.Base.xml
 C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebBrowser.xml
 C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebEngine.xml
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.Base.dll
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebBrowser.dll
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebEngine.dll
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.Base.xml
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebBrowser.xml
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\EO.WebEngine.xml
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Newtonsoft.Json.xml
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Game.resources
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Form1.resources
+C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.csproj.CopyComplete

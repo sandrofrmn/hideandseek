@@ -20,7 +20,7 @@ namespace Hide_and_Seek
             string text = reader.ReadToEnd();
             return text;
         }
-
+        
         public void domoticz_handler(string domoticz_URL)
         {
             HttpWebRequest request =
@@ -30,7 +30,7 @@ namespace Hide_and_Seek
             StreamReader reader = new StreamReader(stream);
             string text = reader.ReadToEnd();
         }
-
+        
         public void DomThreadURL(int switchID)
         {
             domoticz_handler(("http://127.0.0.1:8080/json.htm?type=devices&rid=" + switchID));

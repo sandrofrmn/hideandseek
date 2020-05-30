@@ -29,5 +29,21 @@ namespace Hide_and_Seek
             game.ShowDialog();
             Close();
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int HidersMinuten = 5;  
+            if (comboBox1.SelectedItem.ToString() == "1 Minute")
+            {
+               HidersMinuten = 1;
+            }
+
+        }
+
     }
 }

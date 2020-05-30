@@ -123,7 +123,7 @@ namespace Hide_and_Seek
             }
 
 
-            if (_minutes >= 5)
+            if (_minutes >= 5 )
             {
                 timer1.Stop();
                 timerHall.Stop();
