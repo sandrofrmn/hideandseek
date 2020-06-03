@@ -24,7 +24,7 @@ namespace Hide_and_Seek
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Game game = new Game(int comboBox1.SelectedValue);
+            Game game = new Game();
             Hide();
             game.ShowDialog();
             Close();
@@ -35,11 +35,26 @@ namespace Hide_and_Seek
 
         }
 
-        public string comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            var minutes = comboBox1.Text;
-            return minutes;
+            
+            DAL dal = new DAL();
 
+            //dal.WriteToDomDb("INSERT INTO VerstopperLog(Verstopper, Room, AmountOfSeconds) VALUES (1, 'Kitchen', 3)");
+            dal.SelectToDb("SELECT * FROM VerstopperLog WHERE Hider=2");
+        }
+
+        private void numberTime_ValueChanged(object sender, EventArgs e)
+        {
+            numberTime.Minimum = 3;
+            numberTime.Maximum = 10;
+            
+        }
+
+        public int numTime()
+        {
+            int time = Convert.ToInt32(numberTime.Value);
+            return time;
         }
     }
 }

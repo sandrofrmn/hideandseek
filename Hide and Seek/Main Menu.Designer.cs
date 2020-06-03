@@ -31,9 +31,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.numberTime = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberTime)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -67,43 +69,56 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "1",
-            "3",
-            "5"});
-            this.comboBox1.Location = new System.Drawing.Point(498, 265);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(81, 24);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(343, 268);
+            this.label2.Location = new System.Drawing.Point(284, 270);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(149, 17);
+            this.label2.Size = new System.Drawing.Size(211, 17);
             this.label2.TabIndex = 4;
-            this.label2.Text = "Time to hide (Minutes)";
+            this.label2.Text = "Time to hide and seek (minutes)";
             this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(746, 85);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "TESTDB";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // numberTime
+            // 
+            this.numberTime.Location = new System.Drawing.Point(501, 268);
+            this.numberTime.Name = "numberTime";
+            this.numberTime.ReadOnly = true;
+            this.numberTime.Size = new System.Drawing.Size(78, 22);
+            this.numberTime.TabIndex = 7;
+            this.numberTime.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numberTime.ValueChanged += new System.EventHandler(this.numberTime_ValueChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 520);
+            this.Controls.Add(this.numberTime);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Main Menu";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numberTime)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,8 +129,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.NumericUpDown numberTime;
     }
 }
 

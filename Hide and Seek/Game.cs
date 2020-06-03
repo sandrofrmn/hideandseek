@@ -21,13 +21,12 @@ namespace Hide_and_Seek
         List<int> MotionSensors = new List<int>() { 3, 9, 10, 11, 12, 13 };
         Random random = new Random();
         DAL dal = new DAL();
+        Form1 mainmenu = new Form1();
 
-        public Game(int selectedValue)
+        public Game()
         {
             InitializeComponent();
             timer1.Start();
-            Form1 forma = new Form1();
-            forma.comboBox1_SelectedIndexChanged      
         }
         
         private void Game_Load(object sender, EventArgs e)
@@ -123,9 +122,9 @@ namespace Hide_and_Seek
                 _minutes++;
                 _seconds = 0;
             }
-            
 
-            if (_minutes >=  )
+            
+            if (_minutes >= mainmenu.numTime)
             {
                 timer1.Stop();
                 timerHall.Stop();

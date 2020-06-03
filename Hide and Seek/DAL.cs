@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace Hide_and_Seek
 {
@@ -30,7 +31,32 @@ namespace Hide_and_Seek
             StreamReader reader = new StreamReader(stream);
             string text = reader.ReadToEnd();
         }
-        
+
+        public void WriteToDomDb(string command)
+        {
+            SqlConnection conn = new SqlConnection("Data Source=LAPTOP-LO42FTJT\\SQLEXPRESS;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True");
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(command, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+
+        public void SelectToDb(string command)
+        {
+            SqlConnection conn = new SqlConnection("Data Source=LAPTOP-LO42FTJT\\SQLEXPRESS;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True");
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(command, conn);
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+                Console.WriteLine(rdr["Hider"].ToString());
+                Console.WriteLine(rdr["Room"].ToString());
+                Console.WriteLine(rdr["AmountOfSeconds"].ToString());
+            }
+
+        }
+
         public void DomThreadURL(int switchID)
         {
             domoticz_handler(("http://127.0.0.1:8080/json.htm?type=devices&rid=" + switchID));
