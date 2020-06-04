@@ -16,22 +16,24 @@ namespace Hide_and_Seek
     {
         private int _seconds;
         private int _minutes;
+        public int allowedMinutes;
+        public string setDifficulty;
         public bool start = true;
         List<string> Rooms = new List<string>() { "Hallway", "Bedroom", "Toilet", "Bathroom", "Livingroom", "Kitchen" };
         List<int> MotionSensors = new List<int>() { 3, 9, 10, 11, 12, 13 };
         Random random = new Random();
         DAL dal = new DAL();
-        Form1 mainmenu = new Form1();
 
-        public Game()
+        public Game(int inputMinutes, string inputDifficulty)
         {
             InitializeComponent();
+            allowedMinutes = inputMinutes;
+            setDifficulty = inputDifficulty;
             timer1.Start();
         }
         
         private void Game_Load(object sender, EventArgs e)
         {
-            
             if (start)
             {
                 roomName.Text = "Hallway";
@@ -46,10 +48,6 @@ namespace Hide_and_Seek
             dal.TurnOff(9);
             dal.TurnOff(11);
             timerRoom.Tick += new System.EventHandler(OnTimerEvent);
-            
-            /*
-            DAL dal = new DAL();
-            dal.TurnOn(sensor);*/
         }
 
         public void OnTimerEvent(object source, EventArgs e)
@@ -65,8 +63,6 @@ namespace Hide_and_Seek
             timerHall.Start();
             timerHall.Interval = random.Next(7000, 45000);
             timerHall.Tick += new System.EventHandler(TimerHallEvent);
-            
-            
         }
 
         public void TimerHallEvent(object source, EventArgs e)
@@ -95,7 +91,6 @@ namespace Hide_and_Seek
                 dal.TurnOn(3);
             }
 
-            
             timerHall.Stop();
             timerRoom.Start();
         }
@@ -116,35 +111,33 @@ namespace Hide_and_Seek
                 time_elapsed.Text = _minutes.ToString() + ":" + _seconds.ToString();
             }
             
-
             if (_seconds % 60 == 0)
             {
                 _minutes++;
                 _seconds = 0;
             }
 
-            
-            if (_minutes >= mainmenu.numTime)
+            if (setDifficulty == "Easy")
+            {
+                setDifficulty = "0";
+            } 
+            else
+            {
+                setDifficulty = "1";
+            }
+
+            if (_minutes == (allowedMinutes - Convert.ToInt32(setDifficulty))){
+                //
+            }
+
+            if (_minutes >= allowedMinutes)
             {
                 timer1.Stop();
                 timerHall.Stop();
                 timerRoom.Stop();
-                time_elapsed.Text = "5:00";
+                time_elapsed.Text = allowedMinutes+":00";
                 dal.TurnOn(14);
             }
-
         }
-
-
-        
-        private void lamp_test_Click(object sender, EventArgs e)
-        { 
-        }
-
-        private void time_elapsed_Click(object sender, EventArgs e)
-        {
-
-        }  
-
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Syncfusion.WinForms.Core;
 
 namespace Hide_and_Seek
 {
@@ -15,6 +16,7 @@ namespace Hide_and_Seek
         public Form1()
         {
             InitializeComponent();
+            comboBoxDifficulty.SelectedIndex = 0;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -24,7 +26,7 @@ namespace Hide_and_Seek
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Game game = new Game();
+            Game game = new Game(numTime(), Difficulty());
             Hide();
             game.ShowDialog();
             Close();
@@ -37,11 +39,11 @@ namespace Hide_and_Seek
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            //Console.WriteLine(comboBoxDifficulty.SelectedItem.ToString());
             DAL dal = new DAL();
 
             //dal.WriteToDomDb("INSERT INTO VerstopperLog(Verstopper, Room, AmountOfSeconds) VALUES (1, 'Kitchen', 3)");
-            dal.SelectToDb("SELECT * FROM VerstopperLog WHERE Hider=2");
+            //dal.SelectToDb("SELECT * FROM VerstopperLog WHERE Hider=2");
         }
 
         private void numberTime_ValueChanged(object sender, EventArgs e)
@@ -55,6 +57,12 @@ namespace Hide_and_Seek
         {
             int time = Convert.ToInt32(numberTime.Value);
             return time;
+        }
+
+        public string Difficulty()
+        {
+            string difficulty = comboBoxDifficulty.SelectedItem.ToString();
+            return difficulty;
         }
     }
 }

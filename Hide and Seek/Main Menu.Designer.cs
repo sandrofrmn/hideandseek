@@ -34,6 +34,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.numberTime = new System.Windows.Forms.NumericUpDown();
+            this.comboBoxDifficulty = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberTime)).BeginInit();
             this.SuspendLayout();
@@ -72,7 +74,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(284, 270);
+            this.label2.Location = new System.Drawing.Point(343, 274);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(211, 17);
             this.label2.TabIndex = 4;
@@ -92,7 +94,7 @@
             // 
             // numberTime
             // 
-            this.numberTime.Location = new System.Drawing.Point(501, 268);
+            this.numberTime.Location = new System.Drawing.Point(560, 272);
             this.numberTime.Name = "numberTime";
             this.numberTime.ReadOnly = true;
             this.numberTime.Size = new System.Drawing.Size(78, 22);
@@ -104,11 +106,33 @@
             0});
             this.numberTime.ValueChanged += new System.EventHandler(this.numberTime_ValueChanged);
             // 
+            // comboBoxDifficulty
+            // 
+            this.comboBoxDifficulty.FormattingEnabled = true;
+            this.comboBoxDifficulty.Items.AddRange(new object[] {
+            "Easy",
+            "Hard"});
+            this.comboBoxDifficulty.Location = new System.Drawing.Point(560, 301);
+            this.comboBoxDifficulty.Name = "comboBoxDifficulty";
+            this.comboBoxDifficulty.Size = new System.Drawing.Size(78, 24);
+            this.comboBoxDifficulty.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(346, 307);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(61, 17);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Difficulty";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 520);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBoxDifficulty);
             this.Controls.Add(this.numberTime);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
@@ -132,6 +156,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button button2;
         public System.Windows.Forms.NumericUpDown numberTime;
+        private System.Windows.Forms.ComboBox comboBoxDifficulty;
+        private System.Windows.Forms.Label label3;
     }
 }
 

@@ -11,6 +11,7 @@ namespace Hide_and_Seek
 {
     class DAL
     {
+        string connectionString = "Data Source=LAPTOP-LO42FTJT\\SQLEXPRESS;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True";
         public string domoticz_checker(string domoticz_URL)
         {
             HttpWebRequest request =
@@ -34,17 +35,16 @@ namespace Hide_and_Seek
 
         public void WriteToDomDb(string command)
         {
-            SqlConnection conn = new SqlConnection("Data Source=LAPTOP-LO42FTJT\\SQLEXPRESS;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(command, conn);
             cmd.ExecuteNonQuery();
             conn.Close();
         }
 
-
         public void SelectToDb(string command)
         {
-            SqlConnection conn = new SqlConnection("Data Source=LAPTOP-LO42FTJT\\SQLEXPRESS;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True");
+            SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(command, conn);
             SqlDataReader rdr = cmd.ExecuteReader();

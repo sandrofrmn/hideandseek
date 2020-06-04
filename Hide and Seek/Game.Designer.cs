@@ -71,7 +71,6 @@
             this.time_elapsed.Size = new System.Drawing.Size(36, 17);
             this.time_elapsed.TabIndex = 3;
             this.time_elapsed.Text = "0:00";
-            this.time_elapsed.Click += new System.EventHandler(this.time_elapsed_Click);
             // 
             // pictureBox1
             // 

@@ -36,3 +36,8 @@ C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Newtonsoft.J
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Game.resources
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Form1.resources
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide and Seek.csproj.CopyComplete
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.Core.WinForms.dll
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.Licensing.dll
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.Shared.Base.dll
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.Core.WinForms.xml
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.Shared.Base.xml
