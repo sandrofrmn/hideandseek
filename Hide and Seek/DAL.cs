@@ -33,11 +33,12 @@ namespace Hide_and_Seek
             string text = reader.ReadToEnd();
         }
 
-        public void WriteToDomDb(string command)
+        public void WriteToDomDb(string command, string message)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(command, conn);
+            cmd.Parameters.AddWithValue("@Message", message);
             cmd.ExecuteNonQuery();
             conn.Close();
         }

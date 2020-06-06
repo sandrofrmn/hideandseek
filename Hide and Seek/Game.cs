@@ -55,6 +55,9 @@ namespace Hide_and_Seek
             dal.TurnGroupOff(2);
             int current_room = random.Next(0, Rooms.Count());
             roomName.Text = Rooms.ElementAt(current_room);
+            dal.WriteToDomDb("INSERT INTO VerstopperLog VALUES 'roomName.Text'");
+
+               
             int sensor = MotionSensors.ElementAt(current_room);
             
             dal.TurnOn(sensor);
@@ -126,8 +129,8 @@ namespace Hide_and_Seek
                 setDifficulty = "1";
             }
 
-            if (_minutes == (allowedMinutes - Convert.ToInt32(setDifficulty))){
-                //
+            if (_minutes == (allowedMinutes - Convert.ToInt32(setDifficulty)) && _seconds == 0){
+                roomName.Visible = false;
             }
 
             if (_minutes >= allowedMinutes)
