@@ -33,13 +33,18 @@ namespace Hide_and_Seek
             string text = reader.ReadToEnd();
         }
 
-        public void WriteToDomDb(string command, string message)
+        public void WriteToDomDb(int hider, string room, int amountOfSeconds)
         {
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
-            SqlCommand cmd = new SqlCommand(command, conn);
-            cmd.Parameters.AddWithValue("@Message", message);
-            cmd.ExecuteNonQuery();
+            string command = "INSERT INTO VerstopperLog VALUES (@Hider, @Room, @AmountOfSeconds)";
+            using (SqlCommand cmd = new SqlCommand(command, conn))
+            {
+                cmd.Parameters.AddWithValue("@Hider", hider);
+                cmd.Parameters.AddWithValue("@Room", room);
+                cmd.Parameters.AddWithValue("@AmountOfSeconds", amountOfSeconds);
+                cmd.ExecuteNonQuery();
+            }
             conn.Close();
         }
 
@@ -55,7 +60,6 @@ namespace Hide_and_Seek
                 Console.WriteLine(rdr["Room"].ToString());
                 Console.WriteLine(rdr["AmountOfSeconds"].ToString());
             }
-
         }
 
         public void DomThreadURL(int switchID)

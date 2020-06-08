@@ -24,6 +24,10 @@ namespace Hide_and_Seek
         Random random = new Random();
         DAL dal = new DAL();
 
+        //TODO: create game into another table sql, so every game has its own id
+        //TODO: fix bedroom -> bathroom and bathroom -> bedroom where it takes currently 4 to 8 seconds (timerRoom) instead of 7 to 45 (timerHall)
+        //TODO: If hallway is logged, into the database, it logs twice with the same AmountOfSeconds
+
         public Game(int inputMinutes, string inputDifficulty)
         {
             InitializeComponent();
@@ -44,20 +48,20 @@ namespace Hide_and_Seek
             timerRoom.Start();
             timerHall.Start();
             timerRoom.Interval = random.Next(4000, 8000);
+            
             dal.TurnOff(3);
             dal.TurnOff(9);
             dal.TurnOff(11);
-            timerRoom.Tick += new System.EventHandler(OnTimerEvent);
+            timerRoom.Tick += new EventHandler(OnTimerEvent);
         }
 
         public void OnTimerEvent(object source, EventArgs e)
         {
             dal.TurnGroupOff(2);
             int current_room = random.Next(0, Rooms.Count());
+            dal.WriteToDomDb(4, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000));
             roomName.Text = Rooms.ElementAt(current_room);
-            dal.WriteToDomDb("INSERT INTO VerstopperLog VALUES 'roomName.Text'");
-
-               
+                           
             int sensor = MotionSensors.ElementAt(current_room);
             
             dal.TurnOn(sensor);
@@ -65,11 +69,13 @@ namespace Hide_and_Seek
 
             timerHall.Start();
             timerHall.Interval = random.Next(7000, 45000);
-            timerHall.Tick += new System.EventHandler(TimerHallEvent);
+            
+            timerHall.Tick += new EventHandler(TimerHallEvent);
         }
 
         public void TimerHallEvent(object source, EventArgs e)
         {
+            dal.WriteToDomDb(4, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000));
             dal.TurnGroupOff(2);
             int number = random.Next(0,1);
             if ((number == 0 && roomName.Text == "Bedroom") || (number == 0 && roomName.Text == "Bathroom")) {
