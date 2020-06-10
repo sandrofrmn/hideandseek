@@ -164,6 +164,7 @@ namespace Hide_and_Seek
         {
             webBrowser1.Navigate("localhost:8080/#/Floorplans");
             webBrowser1.Document.Body.Style = "zoom:100%";
-    }
+            webBrowser1.ScriptErrorsSuppressed = true;
+        }
 }
 }
