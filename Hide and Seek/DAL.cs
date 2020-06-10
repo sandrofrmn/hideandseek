@@ -11,7 +11,7 @@ namespace Hide_and_Seek
 {
     class DAL
     {
-        string connectionString = "Data Source=LAPTOP-LO42FTJT\\SQLEXPRESS;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True";
+        string connectionString = "Data Source=LAPTOP-7251AEHH;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True";
         public string domoticz_checker(string domoticz_URL)
         {
             HttpWebRequest request =
@@ -61,6 +61,17 @@ namespace Hide_and_Seek
                 Console.WriteLine(rdr["AmountOfSeconds"].ToString());
             }
         }
+
+        public void DeleteRecords()
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            string command = "DELETE FROM VerstopperLog";
+            using (SqlCommand cmd = new SqlCommand(command, conn))
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
 
         public void DomThreadURL(int switchID)
         {

@@ -24,9 +24,13 @@ namespace Hide_and_Seek
         Random random = new Random();
         DAL dal = new DAL();
 
-        //TODO: create game into another table sql, so every game has its own id
+        //TODO (DONE): create game into another table sql, so every game has its own id. UPDATE: Fixed by clearing records at the start of every game.
         //TODO: fix bedroom -> bathroom and bathroom -> bedroom where it takes currently 4 to 8 seconds (timerRoom) instead of 7 to 45 (timerHall)
         //TODO: If hallway is logged, into the database, it logs twice with the same AmountOfSeconds
+        //TODO: Create room buttons for the Seeker (Create the seeker system in a new form that starts af the pre round??)
+        //TODO: In the seeker system a log from the pre round will be showed
+        //TODO: The webpage must be cropped for a nicer look and it has to refresh automatically
+        
 
         public Game(int inputMinutes, string inputDifficulty)
         {
@@ -34,12 +38,16 @@ namespace Hide_and_Seek
             allowedMinutes = inputMinutes;
             setDifficulty = inputDifficulty;
             timer1.Start();
+            dal.DeleteRecords();
+
         }
-        
+
         private void Game_Load(object sender, EventArgs e)
         {
             if (start)
             {
+
+
                 roomName.Text = "Hallway";
                 dal.TurnGroupOff(2);
                 dal.TurnOn(3);
@@ -48,7 +56,7 @@ namespace Hide_and_Seek
             timerRoom.Start();
             timerHall.Start();
             timerRoom.Interval = random.Next(4000, 8000);
-            
+
             dal.TurnOff(3);
             dal.TurnOff(9);
             dal.TurnOff(11);
@@ -61,15 +69,15 @@ namespace Hide_and_Seek
             int current_room = random.Next(0, Rooms.Count());
             dal.WriteToDomDb(4, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000));
             roomName.Text = Rooms.ElementAt(current_room);
-                           
+
             int sensor = MotionSensors.ElementAt(current_room);
-            
+
             dal.TurnOn(sensor);
             timerRoom.Stop();
 
             timerHall.Start();
             timerHall.Interval = random.Next(7000, 45000);
-            
+
             timerHall.Tick += new EventHandler(TimerHallEvent);
         }
 
@@ -77,8 +85,9 @@ namespace Hide_and_Seek
         {
             dal.WriteToDomDb(4, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000));
             dal.TurnGroupOff(2);
-            int number = random.Next(0,1);
-            if ((number == 0 && roomName.Text == "Bedroom") || (number == 0 && roomName.Text == "Bathroom")) {
+            int number = random.Next(0, 1);
+            if ((number == 0 && roomName.Text == "Bedroom") || (number == 0 && roomName.Text == "Bathroom"))
+            {
                 if (roomName.Text == "Bedroom")
                 {
                     roomName.Text = "Bathroom";
@@ -95,13 +104,14 @@ namespace Hide_and_Seek
                 }
             }
             else
-            {  
+            {
                 roomName.Text = "Hallway";
                 dal.TurnOn(3);
             }
 
             timerHall.Stop();
             timerRoom.Start();
+
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -109,17 +119,17 @@ namespace Hide_and_Seek
             _seconds++;
             if (_seconds < 10)
             {
-                time_elapsed.Text = _minutes.ToString() + ":" + "0"+_seconds.ToString();
+                time_elapsed.Text = _minutes.ToString() + ":" + "0" + _seconds.ToString();
             }
             else if (_seconds == 60)
             {
-                time_elapsed.Text = (_minutes+1).ToString() + ":" + "00";
+                time_elapsed.Text = (_minutes + 1).ToString() + ":" + "00";
             }
             else
             {
                 time_elapsed.Text = _minutes.ToString() + ":" + _seconds.ToString();
             }
-            
+
             if (_seconds % 60 == 0)
             {
                 _minutes++;
@@ -129,13 +139,14 @@ namespace Hide_and_Seek
             if (setDifficulty == "Easy")
             {
                 setDifficulty = "0";
-            } 
+            }
             else
             {
                 setDifficulty = "1";
             }
 
-            if (_minutes == (allowedMinutes - Convert.ToInt32(setDifficulty)) && _seconds == 0){
+            if (_minutes == (allowedMinutes - Convert.ToInt32(setDifficulty)) && _seconds == 0)
+            {
                 roomName.Visible = false;
             }
 
@@ -144,9 +155,15 @@ namespace Hide_and_Seek
                 timer1.Stop();
                 timerHall.Stop();
                 timerRoom.Stop();
-                time_elapsed.Text = allowedMinutes+":00";
+                time_elapsed.Text = allowedMinutes + ":00";
                 dal.TurnOn(14);
             }
         }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            webBrowser1.Navigate("localhost:8080/#/Floorplans");
+            webBrowser1.Document.Body.Style = "zoom:100%";
     }
+}
 }
