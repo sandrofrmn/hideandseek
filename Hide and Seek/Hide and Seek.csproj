@@ -83,6 +83,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VerstoppertjeDatabaseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VerstoppertjeDatabaseDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
     </EmbeddedResource>
@@ -111,6 +116,17 @@
     </Compile>
     <None Include="Scripts\jquery-3.4.1.min.map" />
     <None Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <None Include="VerstoppertjeDatabaseDataSet.xsc">
+      <DependentUpon>VerstoppertjeDatabaseDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="VerstoppertjeDatabaseDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VerstoppertjeDatabaseDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VerstoppertjeDatabaseDataSet.xss">
+      <DependentUpon>VerstoppertjeDatabaseDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
