@@ -31,7 +31,7 @@ namespace Hide_and_Seek
         //TODO: If hallway is logged into the database, it logs multiple times with the same AmountOfSeconds
         //TODO: In the seeker system a log from the pre round will be showed
         //TODO: The webpage must be cropped for a nicer look
-        
+
 
         public Game(int inputMinutes, string inputDifficulty)
         {
@@ -44,14 +44,14 @@ namespace Hide_and_Seek
 
         private void Game_Load(object sender, EventArgs e)
         {
-            this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+            /*this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);*/
             if (start)
             {
                 roomName.Text = "Hallway";
                 dal.TurnGroupOff(2);
                 dal.TurnOn(3);
                 webBrowser1.Refresh();
-                
+
                 start = false;
             }
             timerRoom.Start();
@@ -71,34 +71,34 @@ namespace Hide_and_Seek
             Console.WriteLine(count);
             Log.Update();
             Log.Refresh();
-            this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
-            
+            /*this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);*/
+
             dal.TurnGroupOff(2);
             int current_room = random.Next(0, Rooms.Count());
             roomName.Text = Rooms.ElementAt(current_room);
-            
-            
+
+
             int sensor = MotionSensors.ElementAt(current_room);
             dal.TurnOn(sensor);
 
             webBrowser1.Refresh();
-            
+
             timerRoom.Stop();
 
             timerHall.Start();
             timerHall.Interval = random.Next(3000, 5000);
-            
-                        
+
+
             timerHall.Tick += new EventHandler(TimerHallEvent);
         }
 
         public void TimerHallEvent(object source, EventArgs e)
         {
 
-            dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000)+1);
+            dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000) + 1);
             Log.Update();
             Log.Refresh();
-            this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+            /*this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);*/
             dal.TurnGroupOff(2);
             /*
             int number = random.Next(0, 1);
@@ -151,7 +151,7 @@ namespace Hide_and_Seek
 
             Log.Update();
             Log.Refresh();
-            this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+            /*this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);*/
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -215,13 +215,13 @@ namespace Hide_and_Seek
                     buttonKitchen.Visible = true;
                     buttonLivingroom.Visible = true;
                     buttonToilet.Visible = true;
-                } 
+                }
                 else
                 {
                     timerHall.Stop();
                     timerRoom.Stop();
                 }
-                
+
 
                 //time_elapsed.Text = allowedMinutes + ":00";
                 dal.TurnOn(14);
@@ -234,5 +234,127 @@ namespace Hide_and_Seek
             webBrowser1.Document.Body.Style = "zoom:100%";
             webBrowser1.ScriptErrorsSuppressed = true;
         }
-}
+
+        private void buttonKitchen_Click(object sender, EventArgs e)
+        {
+            if (roomName.Text == "Kitchen")
+            {
+                pictureBoxWin.Visible = true;
+                labelWin.Visible = true;
+                labelAgain.Visible = false;
+                timerHall.Stop();
+                timerRoom.Stop();
+                timer1.Stop();
+
+
+            }
+            else
+            {
+                labelAgain.Visible = true;
+            }
+
+        }
+
+        private void buttonToilet_Click(object sender, EventArgs e)
+        {
+            if (roomName.Text == "Toilet")
+            {
+                pictureBoxWin.Visible = true;
+                labelWin.Visible = true;
+                labelAgain.Visible = false;
+                timerHall.Stop();
+                timerRoom.Stop();
+                timer1.Stop();
+
+
+            }
+
+            else
+            {
+                labelAgain.Visible = true;
+            }
+        }
+
+
+        private void buttonBedroom_Click(object sender, EventArgs e)
+        {
+            if (roomName.Text == "Bedroom")
+            {
+                pictureBoxWin.Visible = true;
+                labelWin.Visible = true;
+                labelAgain.Visible = false;
+                timerHall.Stop();
+                timerRoom.Stop();
+                timer1.Stop();
+
+
+            }
+
+            else
+            {
+                labelAgain.Visible = true;
+            }
+        }
+
+        private void buttonHallway_Click(object sender, EventArgs e)
+        {
+            if (roomName.Text == "Hallway")
+            {
+                pictureBoxWin.Visible = true;
+                labelWin.Visible = true;
+                labelAgain.Visible = false;
+                timerHall.Stop();
+                timerRoom.Stop();
+                timer1.Stop();
+
+
+            }
+
+            else
+            {
+                labelAgain.Visible = true;
+            }
+        }
+
+        private void buttonLivingroom_Click(object sender, EventArgs e)
+        {
+            if (roomName.Text == "Livingroom")
+            {
+                pictureBoxWin.Visible = true;
+                labelWin.Visible = true;
+                labelAgain.Visible = false;
+                timerHall.Stop();
+                timerRoom.Stop();
+                timer1.Stop();
+
+
+            }
+
+            else
+            {
+                labelAgain.Visible = true;
+            }
+        }
+
+        private void buttonBathroom_Click(object sender, EventArgs e)
+        {
+            if (roomName.Text == "Bathroom")
+            {
+                pictureBoxWin.Visible = true;
+                labelWin.Visible = true;
+                labelAgain.Visible = false;
+                timerHall.Stop();
+                timerRoom.Stop();
+                timer1.Stop();
+
+
+
+            }
+
+            else
+            {
+                labelAgain.Visible = true;
+            }
+        }
+    }
 }

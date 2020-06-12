@@ -33,28 +33,35 @@
             this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.time_elapsed = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.roomName = new System.Windows.Forms.Label();
             this.timerRoom = new System.Windows.Forms.Timer(this.components);
             this.timerHall = new System.Windows.Forms.Timer(this.components);
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.Log = new System.Windows.Forms.DataGridView();
-            this.verstoppertjeDatabaseDataSet = new Hide_and_Seek.VerstoppertjeDatabaseDataSet();
-            this.verstopperLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.verstopperLogTableAdapter = new Hide_and_Seek.VerstoppertjeDatabaseDataSetTableAdapters.VerstopperLogTableAdapter();
             this.hiderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountOfSecondsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verstopperLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.verstoppertjeDatabaseDataSet = new Hide_and_Seek.VerstoppertjeDatabaseDataSet();
+            this.verstopperLogTableAdapter = new Hide_and_Seek.VerstoppertjeDatabaseDataSetTableAdapters.VerstopperLogTableAdapter();
             this.buttonBathroom = new System.Windows.Forms.Button();
             this.buttonBedroom = new System.Windows.Forms.Button();
             this.buttonHallway = new System.Windows.Forms.Button();
             this.buttonKitchen = new System.Windows.Forms.Button();
             this.buttonLivingroom = new System.Windows.Forms.Button();
             this.buttonToilet = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.labelWin = new System.Windows.Forms.Label();
+            this.pictureBoxLoser = new System.Windows.Forms.PictureBox();
+            this.pictureBoxWin = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelLoos = new System.Windows.Forms.Label();
+            this.labelAgain = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Log)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.verstopperLogBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -77,7 +84,6 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // time_elapsed
@@ -88,17 +94,6 @@
             this.time_elapsed.Size = new System.Drawing.Size(36, 17);
             this.time_elapsed.TabIndex = 3;
             this.time_elapsed.Text = "0:00";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Hide_and_Seek.Properties.Resources.Floorplan_with_names;
-            this.pictureBox1.Location = new System.Drawing.Point(78, 30);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(684, 423);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
             // 
             // roomName
             // 
@@ -141,20 +136,6 @@
             this.Log.Size = new System.Drawing.Size(586, 302);
             this.Log.TabIndex = 7;
             // 
-            // verstoppertjeDatabaseDataSet
-            // 
-            this.verstoppertjeDatabaseDataSet.DataSetName = "VerstoppertjeDatabaseDataSet";
-            this.verstoppertjeDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // verstopperLogBindingSource
-            // 
-            this.verstopperLogBindingSource.DataMember = "VerstopperLog";
-            this.verstopperLogBindingSource.DataSource = this.verstoppertjeDatabaseDataSet;
-            // 
-            // verstopperLogTableAdapter
-            // 
-            this.verstopperLogTableAdapter.ClearBeforeFill = true;
-            // 
             // hiderDataGridViewTextBoxColumn
             // 
             this.hiderDataGridViewTextBoxColumn.DataPropertyName = "Hider";
@@ -179,6 +160,20 @@
             this.amountOfSecondsDataGridViewTextBoxColumn.Name = "amountOfSecondsDataGridViewTextBoxColumn";
             this.amountOfSecondsDataGridViewTextBoxColumn.Width = 125;
             // 
+            // verstopperLogBindingSource
+            // 
+            this.verstopperLogBindingSource.DataMember = "VerstopperLog";
+            this.verstopperLogBindingSource.DataSource = this.verstoppertjeDatabaseDataSet;
+            // 
+            // verstoppertjeDatabaseDataSet
+            // 
+            this.verstoppertjeDatabaseDataSet.DataSetName = "VerstoppertjeDatabaseDataSet";
+            this.verstoppertjeDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // verstopperLogTableAdapter
+            // 
+            this.verstopperLogTableAdapter.ClearBeforeFill = true;
+            // 
             // buttonBathroom
             // 
             this.buttonBathroom.Location = new System.Drawing.Point(192, 123);
@@ -188,6 +183,7 @@
             this.buttonBathroom.Text = "Bathroom";
             this.buttonBathroom.UseVisualStyleBackColor = true;
             this.buttonBathroom.Visible = false;
+            this.buttonBathroom.Click += new System.EventHandler(this.buttonBathroom_Click);
             // 
             // buttonBedroom
             // 
@@ -198,6 +194,7 @@
             this.buttonBedroom.Text = "Bedroom";
             this.buttonBedroom.UseVisualStyleBackColor = true;
             this.buttonBedroom.Visible = false;
+            this.buttonBedroom.Click += new System.EventHandler(this.buttonBedroom_Click);
             // 
             // buttonHallway
             // 
@@ -208,6 +205,7 @@
             this.buttonHallway.Text = "Hallway";
             this.buttonHallway.UseVisualStyleBackColor = true;
             this.buttonHallway.Visible = false;
+            this.buttonHallway.Click += new System.EventHandler(this.buttonHallway_Click);
             // 
             // buttonKitchen
             // 
@@ -218,6 +216,7 @@
             this.buttonKitchen.Text = "Kitchen";
             this.buttonKitchen.UseVisualStyleBackColor = true;
             this.buttonKitchen.Visible = false;
+            this.buttonKitchen.Click += new System.EventHandler(this.buttonKitchen_Click);
             // 
             // buttonLivingroom
             // 
@@ -228,6 +227,7 @@
             this.buttonLivingroom.Text = "Livingroom";
             this.buttonLivingroom.UseVisualStyleBackColor = true;
             this.buttonLivingroom.Visible = false;
+            this.buttonLivingroom.Click += new System.EventHandler(this.buttonLivingroom_Click);
             // 
             // buttonToilet
             // 
@@ -238,12 +238,86 @@
             this.buttonToilet.Text = "Toilet";
             this.buttonToilet.UseVisualStyleBackColor = true;
             this.buttonToilet.Visible = false;
+            this.buttonToilet.Click += new System.EventHandler(this.buttonToilet_Click);
+            // 
+            // labelWin
+            // 
+            this.labelWin.AutoSize = true;
+            this.labelWin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelWin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.labelWin.Location = new System.Drawing.Point(928, 501);
+            this.labelWin.Name = "labelWin";
+            this.labelWin.Size = new System.Drawing.Size(208, 25);
+            this.labelWin.TabIndex = 16;
+            this.labelWin.Text = "YOU WIN THE GAME";
+            this.labelWin.Visible = false;
+            // 
+            // pictureBoxLoser
+            // 
+            this.pictureBoxLoser.Image = global::Hide_and_Seek.Properties.Resources.LOSER;
+            this.pictureBoxLoser.Location = new System.Drawing.Point(78, 30);
+            this.pictureBoxLoser.Name = "pictureBoxLoser";
+            this.pictureBoxLoser.Size = new System.Drawing.Size(684, 423);
+            this.pictureBoxLoser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxLoser.TabIndex = 17;
+            this.pictureBoxLoser.TabStop = false;
+            this.pictureBoxLoser.Visible = false;
+            // 
+            // pictureBoxWin
+            // 
+            this.pictureBoxWin.Image = global::Hide_and_Seek.Properties.Resources.WINNER;
+            this.pictureBoxWin.Location = new System.Drawing.Point(78, 30);
+            this.pictureBoxWin.Name = "pictureBoxWin";
+            this.pictureBoxWin.Size = new System.Drawing.Size(684, 423);
+            this.pictureBoxWin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxWin.TabIndex = 14;
+            this.pictureBoxWin.TabStop = false;
+            this.pictureBoxWin.Visible = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Hide_and_Seek.Properties.Resources.Floorplan_with_names;
+            this.pictureBox1.Location = new System.Drawing.Point(78, 30);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(684, 423);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 4;
+            this.pictureBox1.TabStop = false;
+            // 
+            // labelLoos
+            // 
+            this.labelLoos.AutoSize = true;
+            this.labelLoos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLoos.ForeColor = System.Drawing.Color.Red;
+            this.labelLoos.Location = new System.Drawing.Point(913, 526);
+            this.labelLoos.Name = "labelLoos";
+            this.labelLoos.Size = new System.Drawing.Size(223, 25);
+            this.labelLoos.TabIndex = 18;
+            this.labelLoos.Text = "YOU LOST THE GAME";
+            this.labelLoos.Visible = false;
+            // 
+            // labelAgain
+            // 
+            this.labelAgain.AutoSize = true;
+            this.labelAgain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAgain.Location = new System.Drawing.Point(966, 476);
+            this.labelAgain.Name = "labelAgain";
+            this.labelAgain.Size = new System.Drawing.Size(124, 25);
+            this.labelAgain.TabIndex = 19;
+            this.labelAgain.Text = "TRY AGAIN!";
+            this.labelAgain.Visible = false;
             // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1401, 672);
+            this.Controls.Add(this.labelAgain);
+            this.Controls.Add(this.labelLoos);
+            this.Controls.Add(this.pictureBoxLoser);
+            this.Controls.Add(this.labelWin);
+            this.Controls.Add(this.pictureBoxWin);
             this.Controls.Add(this.buttonToilet);
             this.Controls.Add(this.buttonLivingroom);
             this.Controls.Add(this.buttonKitchen);
@@ -261,10 +335,12 @@
             this.Name = "Game";
             this.Text = "Game";
             this.Load += new System.EventHandler(this.Game_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Log)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.verstopperLogBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -294,5 +370,10 @@
         private System.Windows.Forms.Button buttonKitchen;
         private System.Windows.Forms.Button buttonLivingroom;
         private System.Windows.Forms.Button buttonToilet;
+        private System.Windows.Forms.PictureBox pictureBoxWin;
+        private System.Windows.Forms.Label labelWin;
+        private System.Windows.Forms.PictureBox pictureBoxLoser;
+        private System.Windows.Forms.Label labelLoos;
+        private System.Windows.Forms.Label labelAgain;
     }
 }

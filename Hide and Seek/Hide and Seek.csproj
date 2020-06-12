@@ -141,6 +141,8 @@
     <None Include="Resources\Floorplan with names.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\WINNER.png" />
+    <None Include="Resources\LOSER.jpg" />
     <Content Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
