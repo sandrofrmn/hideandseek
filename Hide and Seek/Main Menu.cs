@@ -48,7 +48,7 @@ namespace Hide_and_Seek
 
         private void numberTime_ValueChanged(object sender, EventArgs e)
         {
-            numberTime.Minimum = 3;
+            numberTime.Minimum = 1;
             numberTime.Maximum = 10;
             
         }
@@ -64,5 +64,6 @@ namespace Hide_and_Seek
             string difficulty = comboBoxDifficulty.SelectedItem.ToString();
             return difficulty;
         }
+
     }
 }

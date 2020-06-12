@@ -21,6 +21,9 @@ namespace Hide_and_Seek
         public bool start = true;
         public bool preRound = true;
         public bool lockDifficulty = false;
+        public bool runOnce = true;
+        //public DateTime time1;
+        //public DateTime time2;
         List<string> Rooms = new List<string>() { "Hallway", "Bedroom", "Toilet", "Bathroom", "Livingroom", "Kitchen" };
         List<int> MotionSensors = new List<int>() { 3, 9, 10, 11, 12, 13 };
         public int count = 0;
@@ -44,7 +47,7 @@ namespace Hide_and_Seek
 
         private void Game_Load(object sender, EventArgs e)
         {
-            /*this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);*/
+            this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
             if (start)
             {
                 roomName.Text = "Hallway";
@@ -56,9 +59,9 @@ namespace Hide_and_Seek
             }
             timerRoom.Start();
             timerHall.Start();
-            timerRoom.Interval = random.Next(2000, 3000);
-            dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000));
-
+            timerRoom.Interval = random.Next(3000, 7000);
+            dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000)+1);
+                       
             dal.TurnOff(3);
             dal.TurnOff(9);
             dal.TurnOff(11);
@@ -67,16 +70,14 @@ namespace Hide_and_Seek
 
         public void OnTimerEvent(object source, EventArgs e)
         {
-            count = count + 1;
-            Console.WriteLine(count);
+            webBrowser1.Refresh();
             Log.Update();
             Log.Refresh();
-            /*this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);*/
+            this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
 
             dal.TurnGroupOff(2);
             int current_room = random.Next(0, Rooms.Count());
             roomName.Text = Rooms.ElementAt(current_room);
-
 
             int sensor = MotionSensors.ElementAt(current_room);
             dal.TurnOn(sensor);
@@ -84,74 +85,60 @@ namespace Hide_and_Seek
             webBrowser1.Refresh();
 
             timerRoom.Stop();
-
             timerHall.Start();
-            timerHall.Interval = random.Next(3000, 5000);
+            timerHall.Interval = random.Next(6000, 30000);
 
-
+            runOnce = true;
             timerHall.Tick += new EventHandler(TimerHallEvent);
         }
 
         public void TimerHallEvent(object source, EventArgs e)
         {
-
-            dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000) + 1);
-            Log.Update();
-            Log.Refresh();
-            /*this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);*/
-            dal.TurnGroupOff(2);
-            /*
-            int number = random.Next(0, 1);
-            if ((number == 0 && roomName.Text == "Bedroom") || (number == 0 && roomName.Text == "Bathroom"))
+            if (runOnce)
             {
-                if (roomName.Text == "Bedroom")
+                dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000) + 1);
+                Log.Update();
+                Log.Refresh();
+                this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+                dal.TurnGroupOff(2);
+
+                int number = random.Next(0, 1);
+                if ((number == 0 && roomName.Text == "Bedroom") || (number == 0 && roomName.Text == "Bathroom"))
                 {
-                    roomName.Text = "Bathroom";
-                    
-                    dal.TurnOn(11);
-                    dal.TurnOff(9);
-                    webBrowser1.Refresh();
-                    Log.Update();
-                    Log.Refresh();
-                    start = true;
+                    if (roomName.Text == "Bedroom")
+                    {
+                        roomName.Text = "Bathroom";
+
+                        dal.TurnOn(11);
+                        dal.TurnOff(9);
+                        webBrowser1.Refresh();
+                        start = true;
+                    }
+                    else
+                    {
+                        roomName.Text = "Bedroom";
+                        dal.TurnOn(9);
+                        dal.TurnOff(11);
+                        webBrowser1.Refresh();
+
+                        start = true;
+                    }
                 }
                 else
                 {
-                    roomName.Text = "Bedroom";
-                    
-                    dal.TurnOn(9);
-                    dal.TurnOff(11);
-                    webBrowser1.Refresh();
-                    
-                    Log.Update();
-                    Log.Refresh();
-                    this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
-                    start = true;
+                    roomName.Text = "Hallway";
+                    dal.TurnOn(3);
                 }
-            }
-            else
-            {
-                roomName.Text = "Hallway";
-                
-                dal.TurnOn(3);
-                webBrowser1.Refresh();
+                dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000) + 1);
                 Log.Update();
                 Log.Refresh();
-            }
-            */
+                this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
 
+                timerHall.Stop();
+                timerRoom.Start();
 
-            timerHall.Stop();
-            timerRoom.Start();
-            timerRoom.Interval = random.Next(4000, 6000);
-
-            roomName.Text = "test kamer";
-            dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000) + 1);
-
-
-            Log.Update();
-            Log.Refresh();
-            /*this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);*/
+                runOnce = false;
+            }     
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -170,7 +157,7 @@ namespace Hide_and_Seek
                 time_elapsed.Text = _minutes.ToString() + ":" + _seconds.ToString();
             }
 
-            if (_seconds % 60 == 0)
+            if (_seconds % 60 == 0 || _seconds >= 60)
             {
                 _minutes++;
                 _seconds = 0;
@@ -188,7 +175,6 @@ namespace Hide_and_Seek
                 }
                 lockDifficulty = true;
             }
-
 
             if (_minutes == (allowedMinutes - Convert.ToInt32(setDifficulty)) && _seconds == 0)
             {
@@ -220,9 +206,9 @@ namespace Hide_and_Seek
                 {
                     timerHall.Stop();
                     timerRoom.Stop();
+                    labelLoos.Visible = true;
+                    pictureBoxLoser.Visible = true;
                 }
-
-
                 //time_elapsed.Text = allowedMinutes + ":00";
                 dal.TurnOn(14);
             }
@@ -235,64 +221,60 @@ namespace Hide_and_Seek
             webBrowser1.ScriptErrorsSuppressed = true;
         }
 
+        public void objectsWin()
+        {
+            buttonBathroom.Visible = false;
+            buttonBedroom.Visible = false;
+            buttonHallway.Visible = false;
+            buttonKitchen.Visible = false;
+            buttonLivingroom.Visible = false;
+            buttonToilet.Visible = false;
+            labelAgain.Visible = false;
+            pictureBoxWin.Visible = true;
+            labelWin.Visible = true;
+            timerHall.Stop();
+            timerRoom.Stop();
+            timer1.Stop();
+        }
+
+        public void WrongChoice()
+        {
+            labelAgain.Visible = true;
+            _seconds += 20;
+        }
         private void buttonKitchen_Click(object sender, EventArgs e)
         {
             if (roomName.Text == "Kitchen")
             {
-                pictureBoxWin.Visible = true;
-                labelWin.Visible = true;
-                labelAgain.Visible = false;
-                timerHall.Stop();
-                timerRoom.Stop();
-                timer1.Stop();
-
-
+                objectsWin();
             }
             else
             {
-                labelAgain.Visible = true;
+                WrongChoice();
             }
-
         }
 
         private void buttonToilet_Click(object sender, EventArgs e)
         {
             if (roomName.Text == "Toilet")
             {
-                pictureBoxWin.Visible = true;
-                labelWin.Visible = true;
-                labelAgain.Visible = false;
-                timerHall.Stop();
-                timerRoom.Stop();
-                timer1.Stop();
-
-
+                objectsWin();
             }
-
             else
             {
-                labelAgain.Visible = true;
+                WrongChoice();
             }
         }
-
 
         private void buttonBedroom_Click(object sender, EventArgs e)
         {
             if (roomName.Text == "Bedroom")
             {
-                pictureBoxWin.Visible = true;
-                labelWin.Visible = true;
-                labelAgain.Visible = false;
-                timerHall.Stop();
-                timerRoom.Stop();
-                timer1.Stop();
-
-
+                objectsWin();
             }
-
             else
             {
-                labelAgain.Visible = true;
+                WrongChoice();
             }
         }
 
@@ -300,19 +282,11 @@ namespace Hide_and_Seek
         {
             if (roomName.Text == "Hallway")
             {
-                pictureBoxWin.Visible = true;
-                labelWin.Visible = true;
-                labelAgain.Visible = false;
-                timerHall.Stop();
-                timerRoom.Stop();
-                timer1.Stop();
-
-
+                objectsWin();
             }
-
             else
             {
-                labelAgain.Visible = true;
+                WrongChoice();
             }
         }
 
@@ -320,19 +294,11 @@ namespace Hide_and_Seek
         {
             if (roomName.Text == "Livingroom")
             {
-                pictureBoxWin.Visible = true;
-                labelWin.Visible = true;
-                labelAgain.Visible = false;
-                timerHall.Stop();
-                timerRoom.Stop();
-                timer1.Stop();
-
-
+                objectsWin();
             }
-
             else
             {
-                labelAgain.Visible = true;
+                WrongChoice();
             }
         }
 
@@ -340,20 +306,11 @@ namespace Hide_and_Seek
         {
             if (roomName.Text == "Bathroom")
             {
-                pictureBoxWin.Visible = true;
-                labelWin.Visible = true;
-                labelAgain.Visible = false;
-                timerHall.Stop();
-                timerRoom.Stop();
-                timer1.Stop();
-
-
-
+                objectsWin();
             }
-
             else
             {
-                labelAgain.Visible = true;
+                WrongChoice();
             }
         }
     }

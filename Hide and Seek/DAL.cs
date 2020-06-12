@@ -11,7 +11,8 @@ namespace Hide_and_Seek
 {
     class DAL
     {
-        string connectionString = "Data Source=LAPTOP-7251AEHH;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True";
+        //string connectionString = "Data Source=LAPTOP-7251AEHH;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True";
+        string connectionString = "Data Source=LAPTOP-LO42FTJT\\SQLEXPRESS;Initial Catalog=VerstoppertjeDatabase;Integrated Security=True";
         public string domoticz_checker(string domoticz_URL)
         {
             HttpWebRequest request =
