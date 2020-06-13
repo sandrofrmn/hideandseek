@@ -47,6 +47,8 @@ namespace Hide_and_Seek
 
         private void Game_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'verstoppertjeDatabaseDataSet1.VerstopperLog' table. You can move, or remove it, as needed.
+            this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
             //this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
             if (start)
             {
@@ -73,7 +75,7 @@ namespace Hide_and_Seek
             webBrowser1.Refresh();
             Log.Update();
             Log.Refresh();
-           // this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+            this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
 
             dal.TurnGroupOff(2);
             int current_room = random.Next(0, Rooms.Count());
@@ -99,7 +101,7 @@ namespace Hide_and_Seek
                 dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000) + 1);
                 Log.Update();
                 Log.Refresh();
-              //  this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+                this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
                 dal.TurnGroupOff(2);
 
                 int number = random.Next(0, 1);
@@ -132,7 +134,7 @@ namespace Hide_and_Seek
                 dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000) + 1);
                 Log.Update();
                 Log.Refresh();
-                //this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+                this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
 
                 timerHall.Stop();
                 timerRoom.Start();
@@ -213,9 +215,18 @@ namespace Hide_and_Seek
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            webBrowser1.Navigate("localhost:8080/#/Floorplans");
-            webBrowser1.Document.Body.Style = "zoom:100%";
-            webBrowser1.ScriptErrorsSuppressed = true;
+            webBrowser1.Navigate("http://127.0.0.1:8080/#/Floorplans");
+            var floorplan = webBrowser1.Document.GetElementById("Floorplan1_1_grp");
+            floorplan.Style = "zoom:200%";
+
+            
+          //  webBrowser1.Document.Body.Style = "zoom:100%";
+
+
+          //  < g id = "floorplan1_1_grp" transform = "translate(0,0) scale(1)" style = "" zoomed = "false" >< image width = "100%" height = "100%" xlink: href = "images/floorplans/plan?idx=1" ></ image >< g id = "floorplan1_1_Content" class="FloorContent"></g><g id = "floorplan1_1_Rooms" class="FloorRooms"><polygon id = "room1" class="hoverable" points="" style="fill: blue; fill-opacity: 0.05;">room1</polygon></g><g id = "floorplan1_1_Devices" transform="scale(1)"></g></g>
+
+
+
         }
 
         public void objectsWin()
