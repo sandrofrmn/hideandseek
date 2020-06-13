@@ -30,14 +30,16 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.numberTime = new System.Windows.Forms.NumericUpDown();
             this.comboBoxDifficulty = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this.textBoxName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numberTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -61,20 +63,10 @@
             this.label1.Text = "Hide and Seek";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Hide_and_Seek.Properties.Resources._681878_200;
-            this.pictureBox1.Location = new System.Drawing.Point(379, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(343, 274);
+            this.label2.Location = new System.Drawing.Point(346, 304);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(211, 17);
             this.label2.TabIndex = 4;
@@ -94,10 +86,20 @@
             // 
             // numberTime
             // 
-            this.numberTime.Location = new System.Drawing.Point(560, 272);
+            this.numberTime.Location = new System.Drawing.Point(560, 302);
+            this.numberTime.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.numberTime.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numberTime.Name = "numberTime";
             this.numberTime.ReadOnly = true;
-            this.numberTime.Size = new System.Drawing.Size(78, 22);
+            this.numberTime.Size = new System.Drawing.Size(87, 22);
             this.numberTime.TabIndex = 7;
             this.numberTime.Value = new decimal(new int[] {
             5,
@@ -112,25 +114,54 @@
             this.comboBoxDifficulty.Items.AddRange(new object[] {
             "Easy",
             "Hard"});
-            this.comboBoxDifficulty.Location = new System.Drawing.Point(560, 301);
+            this.comboBoxDifficulty.Location = new System.Drawing.Point(560, 331);
             this.comboBoxDifficulty.Name = "comboBoxDifficulty";
-            this.comboBoxDifficulty.Size = new System.Drawing.Size(78, 24);
+            this.comboBoxDifficulty.Size = new System.Drawing.Size(87, 24);
             this.comboBoxDifficulty.TabIndex = 8;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(346, 307);
+            this.label3.Location = new System.Drawing.Point(346, 337);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 17);
             this.label3.TabIndex = 9;
             this.label3.Text = "Difficulty";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Hide_and_Seek.Properties.Resources._681878_200;
+            this.pictureBox1.Location = new System.Drawing.Point(379, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(200, 200);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(346, 271);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(45, 17);
+            this.labelName.TabIndex = 10;
+            this.labelName.Text = "Name";
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(560, 268);
+            this.textBoxName.MaxLength = 10;
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(87, 22);
+            this.textBoxName.TabIndex = 11;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 520);
+            this.Controls.Add(this.textBoxName);
+            this.Controls.Add(this.labelName);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxDifficulty);
             this.Controls.Add(this.numberTime);
@@ -141,8 +172,8 @@
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Main Menu";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numberTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,6 +189,8 @@
         public System.Windows.Forms.NumericUpDown numberTime;
         private System.Windows.Forms.ComboBox comboBoxDifficulty;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.TextBox textBoxName;
     }
 }
 

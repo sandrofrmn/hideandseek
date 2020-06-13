@@ -46,3 +46,4 @@ C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.L
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.Shared.Base.dll
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.Core.WinForms.xml
 C:\Users\jtheu\Documents\GitHub\hideandseek\Hide and Seek\bin\Debug\Syncfusion.Shared.Base.xml
+C:\Users\imsan\Documents\GitHub\hideandseek\Hide and Seek\obj\Debug\Hide_and_Seek.Scoreboard.resources

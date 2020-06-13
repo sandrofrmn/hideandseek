@@ -22,6 +22,9 @@ namespace Hide_and_Seek
         public bool preRound = true;
         public bool lockDifficulty = false;
         public bool runOnce = true;
+        //USER VARIABLES
+        public string chosenName;
+        public int amountOfClicks;
         //public DateTime time1;
         //public DateTime time2;
         List<string> Rooms = new List<string>() { "Hallway", "Bedroom", "Toilet", "Bathroom", "Livingroom", "Kitchen" };
@@ -34,35 +37,34 @@ namespace Hide_and_Seek
         //TODO: If hallway is logged into the database, it logs multiple times with the same AmountOfSeconds
         //TODO: In the seeker system a log from the pre round will be showed
         //TODO: The webpage must be cropped for a nicer look
-
-
-        public Game(int inputMinutes, string inputDifficulty)
+        
+        public Game(string inputName, int inputMinutes, string inputDifficulty)
         {
             InitializeComponent();
             allowedMinutes = inputMinutes;
             setDifficulty = inputDifficulty;
+            chosenName = inputName;
             timer1.Start();
             dal.DeleteRecords();
         }
-
+        
         private void Game_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'verstoppertjeDatabaseDataSet1.VerstopperLog' table. You can move, or remove it, as needed.
-            this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
-            //this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+            this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+            //this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
             if (start)
             {
                 roomName.Text = "Hallway";
                 dal.TurnGroupOff(2);
                 dal.TurnOn(3);
                 webBrowser1.Refresh();
-
                 start = false;
             }
             timerRoom.Start();
             timerHall.Start();
             timerRoom.Interval = random.Next(3000, 7000);
-            dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000)+1);
+            dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000));
                        
             dal.TurnOff(3);
             dal.TurnOff(9);
@@ -75,7 +77,8 @@ namespace Hide_and_Seek
             webBrowser1.Refresh();
             Log.Update();
             Log.Refresh();
-            this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
+            this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+            //this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
 
             dal.TurnGroupOff(2);
             int current_room = random.Next(0, Rooms.Count());
@@ -98,10 +101,11 @@ namespace Hide_and_Seek
         {
             if (runOnce)
             {
-                dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000) + 1);
+                dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerHall.Interval / 1000));
                 Log.Update();
                 Log.Refresh();
-                this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
+                this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+                //this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
                 dal.TurnGroupOff(2);
 
                 int number = random.Next(0, 1);
@@ -131,10 +135,11 @@ namespace Hide_and_Seek
                     roomName.Text = "Hallway";
                     dal.TurnOn(3);
                 }
-                dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000) + 1);
+                dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000));
                 Log.Update();
                 Log.Refresh();
-                this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
+                this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
+                //this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
 
                 timerHall.Stop();
                 timerRoom.Start();
@@ -142,7 +147,7 @@ namespace Hide_and_Seek
                 runOnce = false;
             }     
         }
-
+        
         private void timer1_Tick(object sender, EventArgs e)
         {
             _seconds++;
@@ -189,6 +194,7 @@ namespace Hide_and_Seek
 
             if (_minutes >= allowedMinutes)
             {
+                time_elapsed.Text = allowedMinutes + ":00";
                 timer1.Stop();
                 if (preRound)
                 {
@@ -208,25 +214,17 @@ namespace Hide_and_Seek
                 {
                     objectsLose();
                 }
-                //time_elapsed.Text = allowedMinutes + ":00";
                 dal.TurnOn(14);
             }
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            webBrowser1.Navigate("http://127.0.0.1:8080/#/Floorplans");
-            var floorplan = webBrowser1.Document.GetElementById("Floorplan1_1_grp");
-            floorplan.Style = "zoom:200%";
-
-            
-          //  webBrowser1.Document.Body.Style = "zoom:100%";
+            //var floorplan = webBrowser1.Document.GetElementById("mFloorplan");
+            //floorplan.Style = "zoom:200%";
 
 
-          //  < g id = "floorplan1_1_grp" transform = "translate(0,0) scale(1)" style = "" zoomed = "false" >< image width = "100%" height = "100%" xlink: href = "images/floorplans/plan?idx=1" ></ image >< g id = "floorplan1_1_Content" class="FloorContent"></g><g id = "floorplan1_1_Rooms" class="FloorRooms"><polygon id = "room1" class="hoverable" points="" style="fill: blue; fill-opacity: 0.05;">room1</polygon></g><g id = "floorplan1_1_Devices" transform="scale(1)"></g></g>
-
-
-
+            //  webBrowser1.Document.Body.Style = "zoom:100%";
         }
 
         public void objectsWin()
@@ -243,6 +241,7 @@ namespace Hide_and_Seek
             timerHall.Stop();
             timerRoom.Stop();
             timer1.Stop();
+            EndGame();
         }
        public void objectsLose()
         {
@@ -257,6 +256,7 @@ namespace Hide_and_Seek
             timerRoom.Stop();
             labelLoos.Visible = true;
             pictureBoxLoser.Visible = true;
+            EndGame();
         }
 
         public void WrongChoice()
@@ -264,6 +264,15 @@ namespace Hide_and_Seek
             labelAgain.Visible = true;
             _seconds += 20;
         }
+
+        public void EndGame()
+        {
+            Scoreboard scoreboard = new Scoreboard(chosenName);
+            scoreboard.ShowDialog();
+        }
+
+
+
         private void buttonKitchen_Click(object sender, EventArgs e)
         {
             if (roomName.Text == "Kitchen")
@@ -335,5 +344,8 @@ namespace Hide_and_Seek
                 WrongChoice();
             }
         }
+
+
+
     }
 }

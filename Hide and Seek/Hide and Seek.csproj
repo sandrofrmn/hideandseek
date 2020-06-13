@@ -83,6 +83,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scoreboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scoreboard.Designer.cs">
+      <DependentUpon>Scoreboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="VerstoppertjeDatabaseDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -92,6 +98,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VerstoppertjeDatabaseDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="VerstoppertjeScoreboard.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VerstoppertjeScoreboard.xsd</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
@@ -109,6 +120,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Scoreboard.resx">
+      <DependentUpon>Scoreboard.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -142,6 +156,17 @@
     </None>
     <None Include="VerstoppertjeDatabaseDataSet1.xss">
       <DependentUpon>VerstoppertjeDatabaseDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="VerstoppertjeScoreboard.xsc">
+      <DependentUpon>VerstoppertjeScoreboard.xsd</DependentUpon>
+    </None>
+    <None Include="VerstoppertjeScoreboard.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VerstoppertjeScoreboard.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VerstoppertjeScoreboard.xss">
+      <DependentUpon>VerstoppertjeScoreboard.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -26,7 +26,8 @@ namespace Hide_and_Seek
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Game game = new Game(numTime(), Difficulty());
+            MessageBox.Show(textBoxName.Text);
+            Game game = new Game(textName(), numTime(), Difficulty());
             Hide();
             game.ShowDialog();
             Close();
@@ -53,6 +54,11 @@ namespace Hide_and_Seek
             
         }
 
+        public string textName()
+        {
+            string name_select = textBoxName.Text.ToString();
+            return name_select;
+        }
         public int numTime()
         {
             int time = Convert.ToInt32(numberTime.Value);
