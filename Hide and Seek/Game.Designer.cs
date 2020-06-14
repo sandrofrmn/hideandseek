@@ -41,10 +41,10 @@
             this.hiderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.roomDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.amountOfSecondsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verstopperLogBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.verstoppertjeDatabaseDataSet1 = new Hide_and_Seek.VerstoppertjeDatabaseDataSet1();
             this.verstopperLogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.verstoppertjeDatabaseDataSet = new Hide_and_Seek.VerstoppertjeDatabaseDataSet();
+            this.verstopperLogBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.verstoppertjeDatabaseDataSet1 = new Hide_and_Seek.VerstoppertjeDatabaseDataSet1();
             this.verstopperLogTableAdapter = new Hide_and_Seek.VerstoppertjeDatabaseDataSetTableAdapters.VerstopperLogTableAdapter();
             this.buttonBathroom = new System.Windows.Forms.Button();
             this.buttonBedroom = new System.Windows.Forms.Button();
@@ -61,10 +61,10 @@
             this.verstopperLogTableAdapter1 = new Hide_and_Seek.VerstoppertjeDatabaseDataSet1TableAdapters.VerstopperLogTableAdapter();
             this.verstoppertjeDatabaseDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.Log)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.verstopperLogBindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.verstopperLogBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.verstopperLogBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -91,7 +91,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 1000;
+            this.timer1.Interval = 60;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // time_elapsed
@@ -108,9 +108,9 @@
             this.roomName.AutoSize = true;
             this.roomName.Location = new System.Drawing.Point(189, 508);
             this.roomName.Name = "roomName";
-            this.roomName.Size = new System.Drawing.Size(135, 17);
+            this.roomName.Size = new System.Drawing.Size(56, 17);
             this.roomName.TabIndex = 5;
-            this.roomName.Text = "Garden (Pre-Game)";
+            this.roomName.Text = "Hallway";
             // 
             // webBrowser1
             // 
@@ -153,6 +153,7 @@
             this.hiderDataGridViewTextBoxColumn.HeaderText = "Hider";
             this.hiderDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.hiderDataGridViewTextBoxColumn.Name = "hiderDataGridViewTextBoxColumn";
+            this.hiderDataGridViewTextBoxColumn.ReadOnly = true;
             this.hiderDataGridViewTextBoxColumn.Width = 125;
             // 
             // roomDataGridViewTextBoxColumn
@@ -161,6 +162,7 @@
             this.roomDataGridViewTextBoxColumn.HeaderText = "Room";
             this.roomDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.roomDataGridViewTextBoxColumn.Name = "roomDataGridViewTextBoxColumn";
+            this.roomDataGridViewTextBoxColumn.ReadOnly = true;
             this.roomDataGridViewTextBoxColumn.Width = 125;
             // 
             // amountOfSecondsDataGridViewTextBoxColumn
@@ -169,17 +171,8 @@
             this.amountOfSecondsDataGridViewTextBoxColumn.HeaderText = "AmountOfSeconds";
             this.amountOfSecondsDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.amountOfSecondsDataGridViewTextBoxColumn.Name = "amountOfSecondsDataGridViewTextBoxColumn";
+            this.amountOfSecondsDataGridViewTextBoxColumn.ReadOnly = true;
             this.amountOfSecondsDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // verstopperLogBindingSource1
-            // 
-            this.verstopperLogBindingSource1.DataMember = "VerstopperLog";
-            this.verstopperLogBindingSource1.DataSource = this.verstoppertjeDatabaseDataSet1;
-            // 
-            // verstoppertjeDatabaseDataSet1
-            // 
-            this.verstoppertjeDatabaseDataSet1.DataSetName = "VerstoppertjeDatabaseDataSet1";
-            this.verstoppertjeDatabaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // verstopperLogBindingSource
             // 
@@ -190,6 +183,16 @@
             // 
             this.verstoppertjeDatabaseDataSet.DataSetName = "VerstoppertjeDatabaseDataSet";
             this.verstoppertjeDatabaseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // verstopperLogBindingSource1
+            // 
+            this.verstopperLogBindingSource1.DataMember = "VerstopperLog";
+            this.verstopperLogBindingSource1.DataSource = this.verstoppertjeDatabaseDataSet1;
+            // 
+            // verstoppertjeDatabaseDataSet1
+            // 
+            this.verstoppertjeDatabaseDataSet1.DataSetName = "VerstoppertjeDatabaseDataSet1";
+            this.verstoppertjeDatabaseDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // verstopperLogTableAdapter
             // 
@@ -366,10 +369,10 @@
             this.Text = "Game";
             this.Load += new System.EventHandler(this.Game_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Log)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.verstopperLogBindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.verstopperLogBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.verstopperLogBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.verstoppertjeDatabaseDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLoser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxWin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

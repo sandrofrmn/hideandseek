@@ -26,7 +26,6 @@ namespace Hide_and_Seek
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(textBoxName.Text);
             Game game = new Game(textName(), numTime(), Difficulty());
             Hide();
             game.ShowDialog();
@@ -49,7 +48,7 @@ namespace Hide_and_Seek
 
         private void numberTime_ValueChanged(object sender, EventArgs e)
         {
-            numberTime.Minimum = 1;
+            numberTime.Minimum = 3;
             numberTime.Maximum = 10;
             
         }

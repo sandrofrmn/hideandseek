@@ -99,6 +99,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VerstoppertjeDatabaseDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="VerstoppertjeScore.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VerstoppertjeScore.xsd</DependentUpon>
+    </Compile>
     <Compile Include="VerstoppertjeScoreboard.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -157,6 +162,17 @@
     <None Include="VerstoppertjeDatabaseDataSet1.xss">
       <DependentUpon>VerstoppertjeDatabaseDataSet1.xsd</DependentUpon>
     </None>
+    <None Include="VerstoppertjeScore.xsc">
+      <DependentUpon>VerstoppertjeScore.xsd</DependentUpon>
+    </None>
+    <None Include="VerstoppertjeScore.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>VerstoppertjeScore.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="VerstoppertjeScore.xss">
+      <DependentUpon>VerstoppertjeScore.xsd</DependentUpon>
+    </None>
     <None Include="VerstoppertjeScoreboard.xsc">
       <DependentUpon>VerstoppertjeScoreboard.xsd</DependentUpon>
     </None>
@@ -184,6 +200,9 @@
   <ItemGroup>
     <None Include="Resources\WINNER.png" />
     <None Include="Resources\LOSER.jpg" />
+    <Content Include="Resources\bronze.png" />
+    <Content Include="Resources\gold.png" />
+    <Content Include="Resources\silver.png" />
     <Content Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

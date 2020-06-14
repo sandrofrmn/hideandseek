@@ -52,7 +52,6 @@ namespace Hide_and_Seek
         {
             // TODO: This line of code loads data into the 'verstoppertjeDatabaseDataSet1.VerstopperLog' table. You can move, or remove it, as needed.
             this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
-            //this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
             if (start)
             {
                 roomName.Text = "Hallway";
@@ -60,13 +59,12 @@ namespace Hide_and_Seek
                 dal.TurnOn(3);
                 webBrowser1.Refresh();
                 start = false;
+                timerRoom.Interval = random.Next(3000, 7000);
             }
             timerRoom.Start();
             timerHall.Start();
-            timerRoom.Interval = random.Next(3000, 7000);
             dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000));
                        
-            dal.TurnOff(3);
             dal.TurnOff(9);
             dal.TurnOff(11);
             timerRoom.Tick += new EventHandler(OnTimerEvent);
@@ -74,11 +72,23 @@ namespace Hide_and_Seek
 
         public void OnTimerEvent(object source, EventArgs e)
         {
+            if (start)
+            {
+                roomName.Text = "Hallway";
+                dal.TurnGroupOff(2);
+                dal.TurnOn(3);
+                webBrowser1.Refresh();
+                start = false;
+                timerRoom.Interval = random.Next(3000, 7000);
+            }
+            timerRoom.Start();
+            timerHall.Start();
+            
+
             webBrowser1.Refresh();
             Log.Update();
             Log.Refresh();
             this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
-            //this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
 
             dal.TurnGroupOff(2);
             int current_room = random.Next(0, Rooms.Count());
@@ -105,10 +115,9 @@ namespace Hide_and_Seek
                 Log.Update();
                 Log.Refresh();
                 this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
-                //this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
                 dal.TurnGroupOff(2);
 
-                int number = random.Next(0, 1);
+                int number = random.Next(0, 2);
                 if ((number == 0 && roomName.Text == "Bedroom") || (number == 0 && roomName.Text == "Bathroom"))
                 {
                     if (roomName.Text == "Bedroom")
@@ -128,19 +137,21 @@ namespace Hide_and_Seek
                         webBrowser1.Refresh();
 
                         start = true;
+
                     }
+                    timerRoom.Interval = random.Next(6000, 30000);
                 }
                 else
                 {
                     roomName.Text = "Hallway";
                     dal.TurnOn(3);
+                    timerRoom.Interval = random.Next(3000, 7000);
                 }
                 dal.WriteToDomDb(1, roomName.Text, Convert.ToInt32(timerRoom.Interval / 1000));
+
                 Log.Update();
                 Log.Refresh();
-                this.verstopperLogTableAdapter.Fill(this.verstoppertjeDatabaseDataSet.VerstopperLog);
-                //this.verstopperLogTableAdapter1.Fill(this.verstoppertjeDatabaseDataSet1.VerstopperLog);
-
+                
                 timerHall.Stop();
                 timerRoom.Start();
 
@@ -189,6 +200,7 @@ namespace Hide_and_Seek
                 if (setDifficulty == "1")
                 {
                     webBrowser1.Visible = false;
+                    Log.Visible = false;
                 }
             }
 
@@ -199,6 +211,7 @@ namespace Hide_and_Seek
                 if (preRound)
                 {
                     preRound = false;
+                    Log.Visible = false;
                     _minutes = 0;
                     _seconds = 0;
                     timer1.Start();
@@ -229,6 +242,7 @@ namespace Hide_and_Seek
 
         public void objectsWin()
         {
+            amountOfClicks += 1;
             buttonBathroom.Visible = false;
             buttonBedroom.Visible = false;
             buttonHallway.Visible = false;
@@ -262,12 +276,28 @@ namespace Hide_and_Seek
         public void WrongChoice()
         {
             labelAgain.Visible = true;
+            amountOfClicks += 1;
             _seconds += 20;
         }
 
         public void EndGame()
         {
-            Scoreboard scoreboard = new Scoreboard(chosenName);
+            int totalTime = allowedMinutes * 60;
+            int timeLeft = totalTime - (_minutes * 60 + _seconds);
+            double score = (Math.Pow(amountOfClicks, -0.95) * timeLeft);
+            double score2 = (double)180 / totalTime;
+            score = Math.Floor(score * score2);
+            if (amountOfClicks == 0)
+            {
+                score = 0;
+            }
+
+            if (setDifficulty == "0")
+            {
+                Math.Floor(score = score * .7);
+            }
+            Console.WriteLine("score: " + score);
+            Scoreboard scoreboard = new Scoreboard(chosenName, score);
             scoreboard.ShowDialog();
         }
 

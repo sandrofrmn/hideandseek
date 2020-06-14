@@ -23,7 +23,6 @@ namespace Hide_and_Seek
             string text = reader.ReadToEnd();
             return text;
         }
-        
         public void domoticz_handler(string domoticz_URL)
         {
             HttpWebRequest request =
@@ -106,6 +105,53 @@ namespace Hide_and_Seek
         public void TurnGroupOff(int sceneGroupID)
         {
             domoticz_handler("http://127.0.0.1:8080/json.htm?type=command&param=switchscene&idx=" + sceneGroupID + "&switchcmd=Off");
+        }
+
+        public int SelectScore(string name)
+        {
+            
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT Points FROM Scoreboard WHERE Name = @Name", conn);
+            cmd.Parameters.AddWithValue("@Name", name);
+
+            int oldscore = Convert.ToInt32(cmd.ExecuteScalar());
+            return oldscore;
+        }
+        
+
+        public void SubmitScore(string name, double score)
+        {
+            SqlConnection conn = new SqlConnection(connectionString);
+            conn.Open();
+
+            SqlCommand cmdCount = new SqlCommand("SELECT COUNT(Name) FROM Scoreboard WHERE Name = @Name", conn);
+            cmdCount.Parameters.AddWithValue("@Name", name);
+            int count = Convert.ToInt32(cmdCount.ExecuteScalar());
+            
+            if (count == 0)
+            {
+                string command = "INSERT INTO Scoreboard(Name, Points) VALUES (@Name, @Score)";
+                using (SqlCommand cmd = new SqlCommand(command, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Score", score);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            } 
+            else
+            {
+                string command = "UPDATE Scoreboard SET Points = Points + @Score WHERE Name = @Name";
+                using (SqlCommand cmd = new SqlCommand(command, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Name", name);
+                    cmd.Parameters.AddWithValue("@Score", score);
+                    cmd.ExecuteNonQuery();
+                }
+
+                conn.Close();
+            }
         }
     }
 }
