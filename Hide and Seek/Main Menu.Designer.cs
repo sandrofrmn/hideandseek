@@ -31,7 +31,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.numberTime = new System.Windows.Forms.NumericUpDown();
             this.comboBoxDifficulty = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -72,17 +71,6 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Time to hide and seek (minutes)";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(746, 85);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "TESTDB";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Visible = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // numberTime
             // 
@@ -165,7 +153,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comboBoxDifficulty);
             this.Controls.Add(this.numberTime);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
@@ -185,7 +172,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
         public System.Windows.Forms.NumericUpDown numberTime;
         private System.Windows.Forms.ComboBox comboBoxDifficulty;
         private System.Windows.Forms.Label label3;
